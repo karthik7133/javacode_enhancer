@@ -1,0 +1,118 @@
+{
+  "threadAPIs": {
+    "Thread.stop()": {
+      "deprecated": true,
+      "since": "JDK 1.2",
+      "reason": "Inherently unsafe - may leave objects in inconsistent state",
+      "replacement": "Use interrupt() or volatile boolean flag",
+      "severity": "high",
+      "example": "Use thread.interrupt() and check Thread.interrupted() in the thread's run method"
+    },
+    "Thread.suspend()": {
+      "deprecated": true,
+      "since": "JDK 1.2",
+      "reason": "Deadlock-prone",
+      "replacement": "Use wait()/notify() or Lock objects",
+      "severity": "high",
+      "example": "synchronized(lock) { lock.wait(); }"
+    },
+    "Thread.resume()": {
+      "deprecated": true,
+      "since": "JDK 1.2",
+      "reason": "Used with deprecated suspend()",
+      "replacement": "Use wait()/notify() or Lock objects",
+      "severity": "high",
+      "example": "synchronized(lock) { lock.notify(); }"
+    }
+  },
+  "dateAPIs": {
+    "Date.getYear()": {
+      "deprecated": true,
+      "since": "JDK 1.1",
+      "reason": "Returns year minus 1900",
+      "replacement": "Use Calendar.get(Calendar.YEAR) or java.time.LocalDate",
+      "severity": "medium",
+      "example": "LocalDate.now().getYear()"
+    },
+    "Date.setYear()": {
+      "deprecated": true,
+      "since": "JDK 1.1",
+      "reason": "Confusing API",
+      "replacement": "Use Calendar.set() or java.time.LocalDate",
+      "severity": "medium",
+      "example": "LocalDate.of(2024, Month.JANUARY, 1)"
+    },
+    "Date.getMonth()": {
+      "deprecated": true,
+      "since": "JDK 1.1",
+      "reason": "Zero-based month indexing",
+      "replacement": "Use Calendar or java.time API",
+      "severity": "medium",
+      "example": "LocalDate.now().getMonthValue()"
+    }
+  },
+  "collectionAPIs": {
+    "Vector": {
+      "deprecated": false,
+      "legacy": true,
+      "reason": "Synchronized, less efficient",
+      "replacement": "Use ArrayList or CopyOnWriteArrayList",
+      "severity": "low",
+      "example": "List<String> list = new ArrayList<>();"
+    },
+    "Hashtable": {
+      "deprecated": false,
+      "legacy": true,
+      "reason": "Synchronized, less efficient",
+      "replacement": "Use HashMap or ConcurrentHashMap",
+      "severity": "low",
+      "example": "Map<String, Integer> map = new HashMap<>();"
+    },
+    "Stack": {
+      "deprecated": false,
+      "legacy": true,
+      "reason": "Extends Vector, use Deque instead",
+      "replacement": "Use ArrayDeque",
+      "severity": "low",
+      "example": "Deque<String> stack = new ArrayDeque<>();"
+    }
+  },
+  "stringAPIs": {
+    "StringBuffer": {
+      "deprecated": false,
+      "suboptimal": true,
+      "reason": "Synchronized when not always needed",
+      "replacement": "Use StringBuilder for single-threaded scenarios",
+      "severity": "low",
+      "example": "StringBuilder sb = new StringBuilder();"
+    }
+  },
+  "observerPattern": {
+    "Observer": {
+      "deprecated": true,
+      "since": "JDK 9",
+      "reason": "Limited event model",
+      "replacement": "Use PropertyChangeListener or reactive libraries",
+      "severity": "medium",
+      "example": "Use java.beans.PropertyChangeSupport"
+    },
+    "Observable": {
+      "deprecated": true,
+      "since": "JDK 9",
+      "reason": "Limited event model",
+      "replacement": "Use PropertyChangeListener or reactive libraries",
+      "severity": "medium",
+      "example": "Use java.beans.PropertyChangeSupport"
+    }
+  },
+  "securityAPIs": {
+    "SecurityManager": {
+      "deprecated": true,
+      "since": "JDK 17",
+      "reason": "Rarely used, maintenance burden",
+      "replacement": "Use OS-level security or containerization",
+      "severity": "medium",
+      "example": "Use Docker containers or OS-level permissions"
+    }
+  }
+}
